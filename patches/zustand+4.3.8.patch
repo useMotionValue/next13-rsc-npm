@@ -1,0 +1,87 @@
+diff --git a/node_modules/zustand/esm/index.js b/node_modules/zustand/esm/index.js
+index 9b7f98d..c2ad183 100644
+--- a/node_modules/zustand/esm/index.js
++++ b/node_modules/zustand/esm/index.js
+@@ -24,6 +24,7 @@ const createImpl = (createState) => {
+   const api = typeof createState === "function" ? createStore(createState) : createState;
+   const useBoundStore = (selector, equalityFn) => useStore(api, selector, equalityFn);
+   Object.assign(useBoundStore, api);
++  console.log("patch package zustand: ", useBoundStore, api, createState);
+   return useBoundStore;
+ };
+ const create = (createState) => createState ? createImpl(createState) : createImpl;
+diff --git a/node_modules/zustand/esm/index.mjs b/node_modules/zustand/esm/index.mjs
+index ba20073..9087abb 100644
+--- a/node_modules/zustand/esm/index.mjs
++++ b/node_modules/zustand/esm/index.mjs
+@@ -24,6 +24,7 @@ const createImpl = (createState) => {
+   const api = typeof createState === "function" ? createStore(createState) : createState;
+   const useBoundStore = (selector, equalityFn) => useStore(api, selector, equalityFn);
+   Object.assign(useBoundStore, api);
++  console.log("patch package zustand: ", useBoundStore, api, createState);
+   return useBoundStore;
+ };
+ const create = (createState) => createState ? createImpl(createState) : createImpl;
+diff --git a/node_modules/zustand/index.js b/node_modules/zustand/index.js
+index 38cd734..866d548 100644
+--- a/node_modules/zustand/index.js
++++ b/node_modules/zustand/index.js
+@@ -22,6 +22,7 @@ var createImpl = function createImpl(createState) {
+     return useStore(api, selector, equalityFn);
+   };
+   Object.assign(useBoundStore, api);
++  console.log('patch package zustand: ', useBoundStore, api, createState);
+   return useBoundStore;
+ };
+ var create = function create(createState) {
+diff --git a/node_modules/zustand/readme.md b/node_modules/zustand/readme.md
+index 1eca21d..299db79 100644
+--- a/node_modules/zustand/readme.md
++++ b/node_modules/zustand/readme.md
+@@ -15,7 +15,7 @@ Don't disregard it because it's cute. It has quite the claws, lots of time was s
+ You can try a live demo [here](https://githubbox.com/pmndrs/zustand/tree/main/examples/demo).
+ 
+ ```bash
+-npm install zustand # or yarn add zustand
++npm install zustand # or yarn add zustand or pnpm add zustand
+ ```
+ 
+ :warning: This readme is written for JavaScript users. If you are a TypeScript user, don't miss [TypeScript Usage](#typescript-usage).
+diff --git a/node_modules/zustand/system/index.development.js b/node_modules/zustand/system/index.development.js
+index e7bd165..3156ecf 100644
+--- a/node_modules/zustand/system/index.development.js
++++ b/node_modules/zustand/system/index.development.js
+@@ -44,6 +44,7 @@ System.register(['zustand/vanilla', 'react', 'use-sync-external-store/shim/with-
+         const api = typeof createState === "function" ? createStore(createState) : createState;
+         const useBoundStore = (selector, equalityFn) => useStore(api, selector, equalityFn);
+         Object.assign(useBoundStore, api);
++        console.log("patch package zustand: ", useBoundStore, api, createState);
+         return useBoundStore;
+       };
+       const create = exports('create', (createState) => createState ? createImpl(createState) : createImpl);
+diff --git a/node_modules/zustand/system/index.production.js b/node_modules/zustand/system/index.production.js
+index 9f10996..e3b9abd 100644
+--- a/node_modules/zustand/system/index.production.js
++++ b/node_modules/zustand/system/index.production.js
+@@ -1 +1 @@
+-System.register(["zustand/vanilla","react","use-sync-external-store/shim/with-selector"],function(c){"use strict";var f={create:1,default:1,useStore:1},o,i,S;return{setters:[function(t){o=t.createStore;var n={};for(var r in t)f[r]||(n[r]=t[r]);c(n)},function(t){i=t.useDebugValue},function(t){S=t.default}],execute:function(){c("useStore",n);const{useSyncExternalStoreWithSelector:t}=S;function n(e,u=e.getState,s){const a=t(e.subscribe,e.getState,e.getServerState||e.getState,u,s);return i(a),a}const r=e=>{const u=typeof e=="function"?o(e):e,s=(a,g)=>n(u,a,g);return Object.assign(s,u),s},l=c("create",e=>e?r(e):r);var v=c("default",e=>l(e))}}});
++System.register(["zustand/vanilla","react","use-sync-external-store/shim/with-selector"],function(s){"use strict";var f={create:1,default:1,useStore:1},o,i,S;return{setters:[function(t){o=t.createStore;var c={};for(var r in t)f[r]||(c[r]=t[r]);s(c)},function(t){i=t.useDebugValue},function(t){S=t.default}],execute:function(){s("useStore",c);const{useSyncExternalStoreWithSelector:t}=S;function c(e,n=e.getState,a){const u=t(e.subscribe,e.getState,e.getServerState||e.getState,n,a);return i(u),u}const r=e=>{const n=typeof e=="function"?o(e):e,a=(u,g)=>c(n,u,g);return Object.assign(a,n),console.log("patch package zustand: ",a,n,e),a},l=s("create",e=>e?r(e):r);var v=s("default",e=>l(e))}}});
+diff --git a/node_modules/zustand/umd/index.development.js b/node_modules/zustand/umd/index.development.js
+index b5f434a..c6804d6 100644
+--- a/node_modules/zustand/umd/index.development.js
++++ b/node_modules/zustand/umd/index.development.js
+@@ -22,6 +22,7 @@
+       return useStore(api, selector, equalityFn);
+     };
+     Object.assign(useBoundStore, api);
++    console.log('patch package zustand: ', useBoundStore, api, createState);
+     return useBoundStore;
+   };
+   var create = function create(createState) {
+diff --git a/node_modules/zustand/umd/index.production.js b/node_modules/zustand/umd/index.production.js
+index c5b71ab..652ead1 100644
+--- a/node_modules/zustand/umd/index.production.js
++++ b/node_modules/zustand/umd/index.production.js
+@@ -1 +1 @@
+-!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(exports,require("zustand/vanilla"),require("react"),require("use-sync-external-store/shim/with-selector")):"function"==typeof define&&define.amd?define(["exports","zustand/vanilla","react","use-sync-external-store/shim/with-selector"],t):t((e="undefined"!=typeof globalThis?globalThis:e||self).zustand={},e.zustandVanilla,e.React,e.useSyncExternalStoreShimWithSelector)}(this,(function(e,t,n,r){"use strict";var u=r.useSyncExternalStoreWithSelector;function o(e,t,r){void 0===t&&(t=e.getState);var o=u(e.subscribe,e.getState,e.getServerState||e.getState,t,r);return n.useDebugValue(o),o}var a=function(e){var n="function"==typeof e?t.createStore(e):e,r=function(e,t){return o(n,e,t)};return Object.assign(r,n),r},i=function(e){return e?a(e):a};e.create=i,e.default=function(e){return i(e)},e.useStore=o,Object.keys(t).forEach((function(n){"default"===n||e.hasOwnProperty(n)||Object.defineProperty(e,n,{enumerable:!0,get:function(){return t[n]}})})),Object.defineProperty(e,"__esModule",{value:!0})}));
++!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?t(exports,require("zustand/vanilla"),require("react"),require("use-sync-external-store/shim/with-selector")):"function"==typeof define&&define.amd?define(["exports","zustand/vanilla","react","use-sync-external-store/shim/with-selector"],t):t((e="undefined"!=typeof globalThis?globalThis:e||self).zustand={},e.zustandVanilla,e.React,e.useSyncExternalStoreShimWithSelector)}(this,(function(e,t,n,r){"use strict";var u=r.useSyncExternalStoreWithSelector;function a(e,t,r){void 0===t&&(t=e.getState);var a=u(e.subscribe,e.getState,e.getServerState||e.getState,t,r);return n.useDebugValue(a),a}var o=function(e){var n="function"==typeof e?t.createStore(e):e,r=function(e,t){return a(n,e,t)};return Object.assign(r,n),console.log("patch package zustand: ",r,n,e),r},i=function(e){return e?o(e):o};e.create=i,e.default=function(e){return i(e)},e.useStore=a,Object.keys(t).forEach((function(n){"default"===n||e.hasOwnProperty(n)||Object.defineProperty(e,n,{enumerable:!0,get:function(){return t[n]}})})),Object.defineProperty(e,"__esModule",{value:!0})}));
